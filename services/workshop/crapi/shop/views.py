@@ -43,6 +43,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.pagination import LimitOffsetPagination
 
 
+class SecretView(APIView):
+
+    def get(self, request):
+        return Response({"data": "ohh well done -> this a a secret endpoint with security details"})
+        
+
 class ProductView(APIView, LimitOffsetPagination):
     """
     Product Controller View

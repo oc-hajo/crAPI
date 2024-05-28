@@ -59,6 +59,8 @@ func (server *Server) InitializeRoutes() *mux.Router {
 
 	//Health
 	server.Router.HandleFunc("/community/home", middlewares.SetMiddlewareJSON(controller.Home)).Methods("GET")
+
+	server.Router.HandleFunc("/community/paypal", middlewares.SetMiddlewareJSON(controller.Secret)).Methods("GET")
 	return server.Router
 }
 

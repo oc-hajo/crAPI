@@ -28,3 +28,9 @@ func (server *Server) Home(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, "Welcome To This crAPI API")
 
 }
+
+//Home API is for testing without token
+func (server *Server) Secret(w http.ResponseWriter, r *http.Request) {
+	responses.JSON(w, http.StatusOK, "Well done, you found the secret paypal endpoint!")
+
+}

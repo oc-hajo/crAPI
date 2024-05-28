@@ -22,6 +22,7 @@ import crapi.shop.views as shop_views
 
 urlpatterns = [
     # Do not change the order of URLs
+    re_path(r"security$", shop_views.SecretView.as_view()),
     re_path(r"products$", shop_views.ProductView.as_view()),
     re_path(r"orders/all$", shop_views.OrderDetailsView.as_view()),
     re_path(r"orders/return_order$", shop_views.ReturnOrder.as_view()),
