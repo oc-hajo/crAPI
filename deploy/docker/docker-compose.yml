@@ -203,6 +203,10 @@ services:
           cpus: '0.5'
           memory: 256M
 
+  nginx:
+    container_name: nginx
+    image: 'nginx:latest'
+
   mongodb:
     container_name: mongodb
     image: 'mongo:4.4'
