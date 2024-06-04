@@ -173,11 +173,11 @@ public class JwtProvider {
       Algorithm alg = header.getAlgorithm();
       boolean valid = false;
       // JWT Algorithm confusion vulnerability
-      log.debug("Algorithm: " + alg.getName());
+      log.warn("Algorithm: " + alg.getName());
       JWSVerifier verifier;
       if (Objects.equals(alg.getName(), "HS256")) {
         String secret = getJwtSecret(header);
-        log.debug("JWT Secret: " + secret);
+        log.warn("JWT Secret: " + secret);
         verifier = new MACVerifier(secret.getBytes(StandardCharsets.UTF_8));
       } else {
         RSAKey verificationKey = getKeyFromJkuHeader(header);
@@ -188,10 +188,11 @@ public class JwtProvider {
           log.debug("Key from JKU: " + verificationKey.toJSONString());
           verifier = new RSASSAVerifier(verificationKey);
         }
-        valid = signedJWT.verify(verifier);
-        log.debug("JWT valid?: " + valid);
-        return valid;
       }
+
+      valid = signedJWT.verify(verifier);
+      log.warn("JWT valid?: " + valid);
+      return valid;
 
     } catch (ParseException e) {
       log.error("Could not parse JWT Token -> Message: %d", e);
