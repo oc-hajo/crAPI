@@ -395,6 +395,8 @@ class ApplyCouponView(APIView):
                     + "'"
                 )
                 row = cursor.fetchall()
+                # make sure update/delete statments are applied to the database
+                connection.commit()
             except Exception as e:
                 log_error(request.path, request.data, 500, e)
                 return Response(
